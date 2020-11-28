@@ -1,0 +1,28 @@
+{
+  "name": "tinyhouse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "build-dev": "webpack -d --mode development",
+    "build-prod": "webpack -p --mode production",
+    "dev-watch": "webpack --watch"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.9",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "babel-loader": "^8.1.0",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "typescript": "^4.0.3",
+    "ts-loader": "^8.0.4"
+  }
+}
