@@ -5,11 +5,12 @@
         "strict": true,
         "noImplicitReturns": true,
         "noImplicitAny": true,
-        "module": "es6",
+        "module": "commonjs",
         "moduleResolution": "node",
         "target": "es5",
         "allowJs": true,
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true
     },
     "include": [
         "./src/**/*"
