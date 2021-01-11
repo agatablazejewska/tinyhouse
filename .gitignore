@@ -463,3 +463,5 @@ fabric.properties
 
 *.js.map
 *.map
+
+.env
