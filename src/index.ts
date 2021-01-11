@@ -1,11 +1,27 @@
-import express from 'express';
+require('dotenv').config();
 
-console.log('hello world!');
+import express, { Application } from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import { buildSchema } from 'type-graphql';
+import { connectDatabase } from './database';
+import { Listing } from './database/models/listing';
+import { ListingResolver } from './graphql';
 
-const app = express();
-const port = 9000;
-app.get('/', (request, result) => {
-    return result.send('Hello World');
-});
+const mount = async (app: Application) => {
+    await connectDatabase();
 
-app.listen(port);
+    const schema = await buildSchema({
+        resolvers: [ListingResolver],
+    });
+
+    const server = new ApolloServer({
+        schema,
+        context: () => ({ listing: Listing }),
+    });
+    server.applyMiddleware({ app, path: '/api' });
+
+    app.listen(process.env.PORT);
+    console.log(`[app] : http://localhost:${process.env.PORT}`);
+};
+
+mount(express());
