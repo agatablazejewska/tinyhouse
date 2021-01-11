@@ -1,4 +1,4 @@
-import { mongoose } from '@typegoose/typegoose';
+import { DocumentType, mongoose } from '@typegoose/typegoose';
 import { Arg, Ctx, ID, Mutation, Query, Resolver, Root } from 'type-graphql';
 import { ListingClass } from '../entities/listing';
 import { Listing } from '../database/models/listing';
@@ -7,10 +7,8 @@ import { Listing } from '../database/models/listing';
 export class ListingResolver {
     @Query(() => [ListingClass])
     async listings(
-        _root: undefined,
-        _args: Record<string, never>,
-        context: { listing: typeof Listing }
-    ) {
+        @Ctx() context: { listing: typeof Listing }
+    ): Promise<DocumentType<ListingClass>[]> {
         return await context.listing.find({}).exec();
     }
 
